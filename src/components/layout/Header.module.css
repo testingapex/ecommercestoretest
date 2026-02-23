@@ -11,6 +11,11 @@
     background: transparent;
 }
 
+.nav {
+    display: flex;
+    align-items: center;
+}
+
 .scrolled {
     height: 70px;
     background: hsla(var(--background) / 0.8);

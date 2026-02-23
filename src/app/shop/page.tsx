@@ -37,11 +37,14 @@ function ShopContent({ initialProducts }: { initialProducts: Product[] }) {
 
         const filter = searchParams.get('filter');
         if (filter === 'new') setSortBy('newest');
-        if (filter === 'popular') setSortBy('rating');
+        if (filter === 'popular' || filter === 'bestsellers') setSortBy('rating');
+        if (filter === 'bestsellers') setOnlyInStock(true); // Optional: bestsellers usually focused on in-stock
     }, [searchParams]);
 
     // Filtered and sorted products
     const filteredProducts = useMemo(() => {
+        const urlFilter = searchParams.get('filter');
+
         return initialProducts
             .filter((product: Product) => {
                 const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -51,7 +54,10 @@ function ShopContent({ initialProducts }: { initialProducts: Product[] }) {
                 const matchesRating = product.rating >= minRating;
                 const matchesStock = !onlyInStock || product.stockStatus !== 'out_of_stock';
 
-                return matchesSearch && matchesCategory && matchesPrice && matchesRating && matchesStock;
+                // Special check for bestsellers if from URL
+                const matchesBestseller = urlFilter !== 'bestsellers' || product.isBestSeller;
+
+                return matchesSearch && matchesCategory && matchesPrice && matchesRating && matchesStock && matchesBestseller;
             })
             .sort((a: Product, b: Product) => {
                 if (sortBy === 'price-low') return a.price - b.price;

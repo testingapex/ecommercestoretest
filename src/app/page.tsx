@@ -21,10 +21,10 @@ export default async function Home() {
             <h1>Everyday essentials, elevated.</h1>
             <p>Discover our curated collection of premium apparel, accessories, and home goods designed for the modern lifestyle.</p>
             <div className={styles.heroActions}>
-              <Link href="/shop" className={styles.primaryBtn}>
+              <Link href="/shop?filter=new" className={styles.primaryBtn}>
                 Shop New Arrivals <ArrowRight size={18} />
               </Link>
-              <Link href="/shop" className={styles.secondaryBtn}>
+              <Link href="/shop?filter=bestsellers" className={styles.secondaryBtn}>
                 Browse Best Sellers
               </Link>
             </div>
