@@ -64,9 +64,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
                 <div className={styles.footer}>
                     <div className={styles.priceContainer}>
-                        <span className={styles.price}>${product.price}</span>
+                        <span className={styles.price}>${product.price.toFixed(2)}</span>
                         {onSale && (
-                            <span className={styles.comparePrice}>${product.compareAtPrice}</span>
+                            <span className={styles.comparePrice}>${product.compareAtPrice?.toFixed(2)}</span>
                         )}
                     </div>
 

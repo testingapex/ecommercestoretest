@@ -6,6 +6,8 @@ import ProductGrid from '@/components/product/ProductGrid';
 import NewsletterForm from '@/components/layout/NewsletterForm';
 import styles from './page.module.css';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const products = await fetchProducts();
   const newArrivals = products.filter(p => p.isNew).slice(0, 4);
