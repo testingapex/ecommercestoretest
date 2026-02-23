@@ -1,0 +1,155 @@
+.footer {
+    background: hsl(var(--secondary));
+    padding: 5rem 0 2rem;
+    border-top: 1px solid hsl(var(--border));
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: hsl(var(--foreground));
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.tagline {
+    color: hsl(var(--muted-foreground));
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    max-width: 320px;
+}
+
+.socials {
+    display: flex;
+    gap: 1rem;
+}
+
+.socials button {
+    color: hsl(var(--muted-foreground));
+    transition: color var(--transition-fast);
+}
+
+.socials button:hover {
+    color: hsl(var(--foreground));
+}
+
+.linksCol h4,
+.newsletterCol h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.linksCol ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.linksCol a {
+    font-size: 0.95rem;
+    color: hsl(var(--muted-foreground));
+    transition: color var(--transition-fast);
+}
+
+.linksCol a:hover {
+    color: hsl(var(--foreground));
+}
+
+.newsletterCol p {
+    font-size: 0.95rem;
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 1.5rem;
+}
+
+.newsletterForm {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.newsletterForm input {
+    flex: 1;
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: hsl(var(--foreground));
+}
+
+.newsletterForm button {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: opacity var(--transition-fast);
+}
+
+.newsletterForm button:hover {
+    opacity: 0.9;
+}
+
+.success {
+    display: block;
+    font-size: 0.85rem;
+    color: #10b981;
+    margin-top: 0.5rem;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    border-top: 1px solid hsl(var(--border));
+    color: hsl(var(--muted-foreground));
+    font-size: 0.85rem;
+}
+
+.legalLinks {
+    display: flex;
+    gap: 2rem;
+}
+
+/* Mobile styles */
+@media (max-width: 1024px) {
+    .main {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .footer {
+        padding: 3rem 0 2rem;
+    }
+
+    .main {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .bottom {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .legalLinks {
+        justify-content: center;
+    }
+}

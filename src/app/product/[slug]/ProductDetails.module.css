@@ -1,0 +1,354 @@
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.breadcrumbs a {
+    transition: color var(--transition-fast);
+}
+
+.breadcrumbs a:hover {
+    color: hsl(var(--foreground));
+}
+
+.productLayout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-bottom: 5rem;
+}
+
+/* Gallery */
+.gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.mainImage {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: hsl(var(--secondary));
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.mainImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnails {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.thumbnail {
+    aspect-ratio: 1/1;
+    background: hsl(var(--secondary));
+    border-radius: 4px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all var(--transition-fast);
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.activeThumbnail {
+    border-color: hsl(var(--primary));
+}
+
+/* Info */
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.badges {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.ratingRow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stars {
+    display: flex;
+    gap: 0.1rem;
+}
+
+.starFilled {
+    color: #fbbf24;
+}
+
+.starEmpty {
+    color: hsl(var(--border));
+}
+
+.reviewCount {
+    font-size: 0.9rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.priceRow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.comparePrice {
+    font-size: 1.25rem;
+    color: hsl(var(--muted-foreground));
+    text-decoration: line-through;
+}
+
+.shortDesc {
+    color: hsl(var(--muted-foreground));
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    font-size: 1.05rem;
+}
+
+.selectors {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.selectorGroup label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.optionBtn {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+}
+
+.optionBtn:hover {
+    border-color: hsl(var(--foreground));
+}
+
+.selectedOption {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-color: hsl(var(--primary));
+}
+
+.quantitySelector {
+    display: flex;
+    align-items: center;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    width: fit-content;
+    padding: 0.5rem;
+}
+
+.quantitySelector button {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--muted-foreground));
+    transition: color var(--transition-fast);
+}
+
+.quantitySelector button:hover {
+    color: hsl(var(--foreground));
+}
+
+.quantitySelector span {
+    font-size: 1rem;
+    font-weight: 700;
+    min-width: 40px;
+    text-align: center;
+}
+
+.addToCartBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    padding: 1.25rem;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: opacity var(--transition-fast);
+    margin-bottom: 3rem;
+}
+
+.addToCartBtn:disabled {
+    background: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+    cursor: not-allowed;
+}
+
+.addToCartBtn:not(:disabled):hover {
+    opacity: 0.9;
+}
+
+.valueProps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-top: 2rem;
+    border-top: 1px solid hsl(var(--border));
+}
+
+.prop {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: hsl(var(--muted-foreground));
+}
+
+/* TabsSection */
+.detailsSection {
+    margin-bottom: 5rem;
+}
+
+.tabHeaders {
+    display: flex;
+    gap: 3rem;
+    border-bottom: 1px solid hsl(var(--border));
+    margin-bottom: 2.5rem;
+}
+
+.tabHeaders button {
+    padding: 1rem 0;
+    font-size: 1rem;
+    font-weight: 700;
+    position: relative;
+    color: hsl(var(--muted-foreground));
+    transition: color var(--transition-fast);
+}
+
+.tabHeaders .activeTab {
+    color: hsl(var(--foreground));
+}
+
+.tabHeaders .activeTab::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: hsl(var(--primary));
+}
+
+.tabContent {
+    color: hsl(var(--muted-foreground));
+    line-height: 1.8;
+    max-width: 800px;
+}
+
+.featureList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.featureList li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.tabContent h4 {
+    color: hsl(var(--foreground));
+    margin-bottom: 0.75rem;
+}
+
+/* Related */
+.related {
+    padding-top: 5rem;
+    border-top: 1px solid hsl(var(--border));
+}
+
+.sectionTitle {
+    font-size: 1.75rem;
+    margin-bottom: 3rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .productLayout {
+        gap: 3rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .productLayout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .breadcrumbs {
+        display: none;
+    }
+
+    .gallery {
+        order: 1;
+    }
+
+    .info {
+        order: 2;
+    }
+
+    .tabHeaders {
+        gap: 1.5rem;
+        overflow-x: auto;
+    }
+
+    .tabHeaders button {
+        white-space: nowrap;
+    }
+}

@@ -1,0 +1,142 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    width: 100%;
+    transition: transform var(--transition-fast);
+}
+
+.imageLink {
+    display: block;
+    width: 100%;
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+    background: hsl(var(--secondary));
+    aspect-ratio: 4/5;
+}
+
+.imageContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.card:hover .image {
+    transform: scale(1.05);
+}
+
+.badges {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all var(--transition-fast);
+    display: flex;
+    justify-content: center;
+}
+
+.card:hover .overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quickAdd {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-fast);
+}
+
+.quickAdd:hover {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+}
+
+.content {
+    padding: 1rem 0;
+}
+
+.category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: hsl(var(--foreground));
+    transition: color var(--transition-fast);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title:hover {
+    color: hsl(var(--muted-foreground));
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.priceContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.price {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.comparePrice {
+    font-size: 0.9rem;
+    color: hsl(var(--muted-foreground));
+    text-decoration: line-through;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fbbf24;
+}

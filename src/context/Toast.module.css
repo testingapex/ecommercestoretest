@@ -1,0 +1,73 @@
+.container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 3000;
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: auto;
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--foreground));
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 300px;
+    animation: slideInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.success {
+    border-left: 4px solid #10b981;
+}
+
+.error {
+    border-left: 4px solid #ef4444;
+}
+
+.toast p {
+    font-size: 0.9rem;
+    font-weight: 500;
+    flex: 1;
+}
+
+.closeBtn {
+    color: hsl(var(--muted-foreground));
+    transition: color var(--transition-fast);
+    display: flex;
+}
+
+.closeBtn:hover {
+    color: hsl(var(--foreground));
+}
+
+@media (max-width: 640px) {
+    .container {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+    }
+
+    .toast {
+        min-width: 0;
+    }
+}

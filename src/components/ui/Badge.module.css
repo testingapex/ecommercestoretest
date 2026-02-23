@@ -1,0 +1,38 @@
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.primary {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+}
+
+.secondary {
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+}
+
+.accent {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+}
+
+.success {
+    background: #10b981;
+    color: white;
+}
+
+.outline {
+    background: transparent;
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--foreground));
+}
