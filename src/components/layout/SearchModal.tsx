@@ -1,9 +1,7 @@
-'use client';
-
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Search, X, ArrowRight } from 'lucide-react';
-import { products } from '@/data/products';
+import { fetchProducts } from '@/data/productsApi';
 import { Product } from '@/types';
 import styles from './SearchModal.module.css';
 
@@ -14,14 +12,24 @@ interface SearchModalProps {
 
 const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
     const [query, setQuery] = useState('');
+    const [products, setProducts] = useState<Product[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        if (isOpen && inputRef.current) {
-            inputRef.current.focus();
+        if (isOpen) {
+            const loadProducts = async () => {
+                const data = await fetchProducts();
+                setProducts(data);
+            };
+            loadProducts();
+
+            if (inputRef.current) {
+                inputRef.current.focus();
+            }
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'auto';
+            setQuery(''); // Reset query on close
         }
     }, [isOpen]);
 

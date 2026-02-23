@@ -3,20 +3,22 @@
 import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Search, Filter, SlidersHorizontal, ChevronDown, X } from 'lucide-react';
-import { products } from '@/data/products';
+import { fetchProducts } from '@/data/productsApi';
 import { Product, Category } from '@/types';
 import ProductGrid from '@/components/product/ProductGrid';
 import styles from './Shop.module.css';
 
-export default function ShopPage() {
+export default async function ShopPage() {
+    const initialProducts = await fetchProducts();
+
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <ShopContent />
+            <ShopContent initialProducts={initialProducts} />
         </Suspense>
     );
 }
 
-function ShopContent() {
+function ShopContent({ initialProducts }: { initialProducts: Product[] }) {
     const searchParams = useSearchParams();
 
     // State for filters
@@ -40,10 +42,10 @@ function ShopContent() {
 
     // Filtered and sorted products
     const filteredProducts = useMemo(() => {
-        return products
-            .filter(product => {
+        return initialProducts
+            .filter((product: Product) => {
                 const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    product.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+                    product.tags.some((tag: string) => tag.toLowerCase().includes(searchQuery.toLowerCase()));
                 const matchesCategory = !selectedCategory || product.category === selectedCategory;
                 const matchesPrice = product.price <= priceRange;
                 const matchesRating = product.rating >= minRating;
@@ -51,14 +53,14 @@ function ShopContent() {
 
                 return matchesSearch && matchesCategory && matchesPrice && matchesRating && matchesStock;
             })
-            .sort((a, b) => {
+            .sort((a: Product, b: Product) => {
                 if (sortBy === 'price-low') return a.price - b.price;
                 if (sortBy === 'price-high') return b.price - a.price;
                 if (sortBy === 'rating') return b.rating - a.rating;
                 if (sortBy === 'newest') return a.isNew === b.isNew ? 0 : a.isNew ? -1 : 1;
                 return 0; // Default: featured (original order)
             });
-    }, [searchQuery, selectedCategory, priceRange, minRating, sortBy, onlyInStock]);
+    }, [initialProducts, searchQuery, selectedCategory, priceRange, minRating, sortBy, onlyInStock]);
 
     const categories: Category[] = ['Apparel', 'Accessories', 'Home'];
 

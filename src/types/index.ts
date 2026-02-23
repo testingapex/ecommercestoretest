@@ -1,5 +1,10 @@
 export type Category = 'Apparel' | 'Accessories' | 'Home';
 
+export interface Variant {
+  type: 'Size' | 'Color';
+  options: string[];
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -16,10 +21,7 @@ export interface Product {
   tags: string[];
   isNew: boolean;
   isBestSeller: boolean;
-  variants?: {
-    type: 'Size' | 'Color';
-    options: string[];
-  }[];
+  variants?: Variant[];
 }
 
 export interface CartItem extends Product {

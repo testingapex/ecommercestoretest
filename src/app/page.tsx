@@ -1,13 +1,13 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Star, ShieldCheck, Truck, RefreshCcw } from 'lucide-react';
-import { products } from '@/data/products';
+import { fetchProducts } from '@/data/productsApi';
 import ProductGrid from '@/components/product/ProductGrid';
+import NewsletterForm from '@/components/layout/NewsletterForm';
 import styles from './page.module.css';
 
-export default function Home() {
+export default async function Home() {
+  const products = await fetchProducts();
   const newArrivals = products.filter(p => p.isNew).slice(0, 4);
   const bestSellers = products.filter(p => p.isBestSeller).slice(0, 4);
 
@@ -129,10 +129,7 @@ export default function Home() {
           <div className={styles.ctaContent}>
             <h2>Join the NovaMart Society</h2>
             <p>Sign up to receive updates, access to exclusive deals, and 10% off your first order.</p>
-            <form className={styles.ctaForm} onSubmit={(e) => e.preventDefault()}>
-              <input type="email" placeholder="you@example.com" required />
-              <button type="submit">Subscribe Now</button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
       </section>
