@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabaseClient";
 import { Product, Category } from "@/types";
+import { unstable_noStore as noStore } from 'next/cache';
 
 export type SupabaseProduct = {
     id: string;
@@ -38,6 +39,7 @@ export const mapSupabaseToProduct = (sp: SupabaseProduct): Product => ({
 });
 
 export async function fetchProducts(): Promise<Product[]> {
+    noStore();
     const { data, error } = await supabase
         .from("products")
         .select("*")
@@ -50,9 +52,42 @@ export async function fetchProducts(): Promise<Product[]> {
     return (data as SupabaseProduct[] ?? []).map(mapSupabaseToProduct);
 }
 
+export async function fetchNewArrivals(limit: number = 4): Promise<Product[]> {
+    noStore();
+    const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("is_new", true)
+        .order("created_at", { ascending: false })
+        .limit(limit);
+
+    if (error) {
+        console.error("Error fetching new arrivals:", error);
+        return [];
+    }
+    return (data as SupabaseProduct[] ?? []).map(mapSupabaseToProduct);
+}
+
+export async function fetchBestSellers(limit: number = 4): Promise<Product[]> {
+    noStore();
+    const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("is_best_seller", true)
+        .order("rating", { ascending: false })
+        .limit(limit);
+
+    if (error) {
+        console.error("Error fetching best sellers:", error);
+        return [];
+    }
+    return (data as SupabaseProduct[] ?? []).map(mapSupabaseToProduct);
+}
+
 export async function fetchProductBySlug(
     slug: string
 ): Promise<Product | null> {
+    noStore();
     const { data, error } = await supabase
         .from("products")
         .select("*")

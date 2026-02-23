@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Star, ShieldCheck, Truck, RefreshCcw } from 'lucide-react';
-import { fetchProducts } from '@/data/productsApi';
+import { fetchNewArrivals, fetchBestSellers } from '@/data/productsApi';
 import ProductGrid from '@/components/product/ProductGrid';
 import NewsletterForm from '@/components/layout/NewsletterForm';
 import styles from './page.module.css';
@@ -9,9 +9,8 @@ import styles from './page.module.css';
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const products = await fetchProducts();
-  const newArrivals = products.filter(p => p.isNew).slice(0, 4);
-  const bestSellers = products.filter(p => p.isBestSeller).slice(0, 4);
+  const newArrivals = await fetchNewArrivals(4);
+  const bestSellers = await fetchBestSellers(4);
 
   return (
     <div className={styles.home}>
